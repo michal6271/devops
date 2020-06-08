@@ -3,10 +3,6 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-variables:
-- name: 'someVar'
-  value: 'defualtValue'
-
 trigger:
 - master
 
@@ -14,10 +10,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
-- script: |
+- script:
     echo $(someVar)
 
 - task: Bash@3
