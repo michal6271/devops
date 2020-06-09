@@ -18,3 +18,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: 'cat README.md'
+  
+- task: FileTransform@2
+  inputs:
+    folderPath: './*.json'
+    jsonTargetFiles: 'deployParams.json'
