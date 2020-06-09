@@ -34,4 +34,4 @@ steps:
     replaceExistingArchive: true
 
 - script: 
-    ls -la $(Build.BinariesDirectory)
+    ls -la $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
