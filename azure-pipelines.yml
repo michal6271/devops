@@ -18,8 +18,20 @@ steps:
   inputs:
     targetType: 'inline'
     script: 'cat README.md'
-  
-- task: FileTransform@2
+
+- task: CopyFiles@2
   inputs:
-    folderPath: './*.json'
-    jsonTargetFiles: 'deployParams.json'
+    SourceFolder: '.'
+    Contents: '**'
+    TargetFolder: '$(Build.BinariesDirectory)'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
+- script: 
+    ls -la $(Build.BinariesDirectory)
